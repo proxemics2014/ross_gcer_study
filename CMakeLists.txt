@@ -83,9 +83,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES ross_gcer_study
-#  CATKIN_DEPENDS ps3joy roscpp rospy std_msgs turtlesim wiimote
+  INCLUDE_DIRS src/include
+  LIBRARIES ross_gcer_study
+  CATKIN_DEPENDS ps3joy roscpp rospy std_msgs turtlesim wiimote 
 #  DEPENDS system_lib
 )
 
@@ -97,6 +97,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -109,12 +110,14 @@ include_directories(
 # add_executable(ross_gcer_study_node src/ross_gcer_study_node.cpp)
 add_executable(test_pswii src/test_pswii.cpp)
 add_executable(try_test_pswii src/try_test_pswii.cpp)
+add_executable(laserscan src/laserscan.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(ross_gcer_study_node ross_gcer_study_generate_messages_cpp)
 add_dependencies(test_pswii ross_gcer_study_generate_messages_cpp)
 add_dependencies(try_test_pswii ross_gcer_study_generate_messages_cpp)
+add_dependencies(laserscan ross_gcer_study_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(test_pswii
@@ -123,6 +126,11 @@ target_link_libraries(test_pswii
 target_link_libraries(try_test_pswii
   ${catkin_LIBRARIES}
 )
+target_link_libraries(laserscan
+  ${catkin_LIBRARIES}
+)
+
+
 #############
 ## Install ##
 #############

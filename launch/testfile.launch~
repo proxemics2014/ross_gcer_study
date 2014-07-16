@@ -1,27 +1,24 @@
 <launch>
 	
 	<!-- WIIMOTE NODE -->
-	<node respawn="true" pkg="wiimote"  type="wiimote_node.py" name="turtle_wii" />
+	<node respawn="true" pkg="wiimote"  type="wiimote_node.py" name="turtle_wii" />	
+	
+	<!-- PS3 JOY NODE -->
+	<node respawn="true" pkg="joy" type="joy_node" name="ps3_joy">
+		<param name="dev" type="string" value="/dev/input/js1" />
+		<param name="deadzone" value="0.12" />
+	</node>
 
  	<!-- Axes -->
   		<param name="axis_linear" value="1" type="int"/>
   		<param name="scale_linear" value="2" type="double"/>
 
-  	<!-- Testing wiimote node -->
-  		<node pkg="learning_wiimote" type="turtle_teleop_wiimote" name="teleop"/>	
-	
-	<!-- PS3 JOY NODE -->
-	<node respawn="true" pkg="joy" type="joy_node" name="ps3_joy">
-		<param name="dev" type="string" value="/dev/input/js0" />
-		<param name="deadzone" value="0.12" />
-	</node>
+	<!-- Starting the test node -->
+	<node pkg="ross_gcer_study" type="try_test_pswii" name="pioneer" />
 
-	<!-- Testing PS3 node -->
-	<node pkg="nao_tutorials" type="pioneer_PS3" name="pioneer" />
-
-	<!-- RosAria NODE-->
-	<node pkg="rosaria" type="RosAria" name="RosAria" >
-		<param name="port" value="/dev/ttyUSB0" />
-	</node>
+	<!-- RosAria NODE -->
+	<!-- node pkg="rosaria" type="RosAria" name="RosAria" -->
+		<!-- param name="port" value="/dev/ttyUSB0" / -->
+	<!-- /node -->
 
 </launch>
